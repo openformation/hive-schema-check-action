@@ -1,0 +1,19 @@
+name: 'build-test'
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          service-name: <SERVICE>
+          schema-path: <SCHEMA>
+          hive-registry-access-token: <TOKEN>
+          comment-pr: false
