@@ -73,7 +73,7 @@ async function run(): Promise<void> {
 
     const pullNumber = github.context.payload.pull_request?.number
     if (pullNumber && shouldCommentPR) {
-      const message = `Hive schema check result:\n${result}`
+      const message = `## Hive schema check result\n${result}`
 
       const octokit = github.getOctokit(githubToken)
       try {
@@ -88,7 +88,7 @@ async function run(): Promise<void> {
     }
 
     if (!schemaCheckPassed) {
-      core.setFailed(`## Hive schema check result\n${result}`)
+      core.setFailed(`Schema check failed:\n${result}`)
     }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)

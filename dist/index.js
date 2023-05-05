@@ -97,7 +97,7 @@ function run() {
             core.debug(result);
             const pullNumber = (_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.number;
             if (pullNumber && shouldCommentPR) {
-                const message = `Hive schema check result:\n${result}`;
+                const message = `## Hive schema check result\n${result}`;
                 const octokit = github.getOctokit(githubToken);
                 try {
                     yield octokit.rest.issues.createComment(Object.assign(Object.assign({}, github.context.repo), { issue_number: pullNumber, body: message }));
@@ -107,7 +107,7 @@ function run() {
                 }
             }
             if (!schemaCheckPassed) {
-                core.setFailed(`## Hive schema check result\n${result}`);
+                core.setFailed(`Schema check failed:\n${result}`);
             }
         }
         catch (error) {
