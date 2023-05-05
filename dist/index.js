@@ -107,7 +107,7 @@ function run() {
                 }
             }
             if (!schemaCheckPassed) {
-                core.setFailed(`Schema check failed:\n${result}`);
+                core.setFailed(`## Hive schema check result\n${result}`);
             }
         }
         catch (error) {

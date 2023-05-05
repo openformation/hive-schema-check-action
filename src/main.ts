@@ -88,7 +88,7 @@ async function run(): Promise<void> {
     }
 
     if (!schemaCheckPassed) {
-      core.setFailed(`Schema check failed:\n${result}`)
+      core.setFailed(`## Hive schema check result\n${result}`)
     }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
