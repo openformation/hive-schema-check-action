@@ -1,6 +1,6 @@
 # GraphQL Hive schema check
 
-Use this action to check changes in your schema against GraphQL Hive using the Hive CLI. This detects breaking changes before they are merged. Additionally, this action will comment the check result on the PR introducing the change.
+Use this action to check changes in your schema against GraphQL Hive using the Hive CLI. This can detect breaking changes before they are merged. Additionally, this action will comment the check result on the PR introducing the change.
 
 # Usage
 ```yaml
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    name: Check the GraphQL schema against Hive
+    name: Run GraphQL Hive schema check
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,3 +25,13 @@ jobs:
           comment-pr: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Configuration
+
+| Name | Required | Description | Default |
+|---|---|---|---|
+| `service-name` | *Required* | Name of the service in Hive | None |
+| `schema-path` | *Required* | Path to the .graphql schema file within the repository | None |
+| `hive-registry-access-token` | *Required* | Hive registry access token | None |
+| `comment-pr` | *Optional* | Enables commenting schema check results on PR | `true` |
+| `github-token` | *Required* | Github token to use when commenting on PRs. Setting to `${{ secrets.GITHUB_TOKEN }}` is sufficient in most cases | None |
