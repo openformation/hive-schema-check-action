@@ -2,10 +2,22 @@ name: 'Your name here'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  milliseconds: # change this
+  service-name:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'Name of the service in Hive'
+  schema-path:
+    required: true
+    description: 'Path to the .graphql schema file'
+  hive-registry-access-token:
+    required: true
+    description: 'Hive registry access token'
+  comment-pr:
+    required: false
+    default: "true"
+    description: 'Option to enable commenting schema check results on PR, defaults to true'
+  github-token:
+    required: true
+    description: 'Github token to use when commenting on PRs'
 runs:
   using: 'node16'
   main: 'dist/index.js'
