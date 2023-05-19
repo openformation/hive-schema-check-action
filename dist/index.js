@@ -78,7 +78,9 @@ function run() {
                 throw new Error('Hive CLI could not be installed.');
             }
             yield curl.pipeStdout((0, execa_1.execa)('sh'));
-            core.debug('Hive CLI installed');
+            // Log Hive CLI version
+            const { stdout: version } = yield (0, execa_1.execa)('hive', ['--version']);
+            core.info(`Installed Hive CLI with version: ${version}`);
             // Run schema check
             const { stdout: result, exitCode } = yield (0, execa_1.execa)('hive', [
                 'schema:check',
@@ -94,7 +96,6 @@ function run() {
                 reject: false
             });
             const schemaCheckPassed = exitCode === 0;
-            core.debug(result);
             const pullNumber = (_a = github.context.payload.pull_request) === null || _a === void 0 ? void 0 : _a.number;
             if (pullNumber && shouldCommentPR) {
                 const message = `## Hive schema check result\n${result}`;
