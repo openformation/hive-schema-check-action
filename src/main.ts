@@ -48,6 +48,10 @@ async function run(): Promise<void> {
 
     core.debug('Hive CLI installed')
 
+    // Log Hive CLI version
+    const { stdout: version } = await execa('hive', ['--version'])
+    core.debug(`Hive version: ${version}`)
+
     // Run schema check
     const { stdout: result, exitCode } = await execa(
       'hive',
