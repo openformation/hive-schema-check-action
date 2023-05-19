@@ -46,11 +46,9 @@ async function run(): Promise<void> {
     }
     await curl.pipeStdout(execa('sh'))
 
-    core.debug('Hive CLI installed')
-
     // Log Hive CLI version
     const { stdout: version } = await execa('hive', ['--version'])
-    core.debug(`Hive version: ${version}`)
+    core.info(`Installed Hive CLI with version: ${version}`)
 
     // Run schema check
     const { stdout: result, exitCode } = await execa(
@@ -72,8 +70,6 @@ async function run(): Promise<void> {
     )
 
     const schemaCheckPassed = exitCode === 0
-
-    core.debug(result)
 
     const pullNumber = github.context.payload.pull_request?.number
     if (pullNumber && shouldCommentPR) {
