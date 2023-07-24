@@ -1,9 +1,9 @@
 {
-  "name": "typescript-action",
+  "name": "@openformation/hive-schema-check-action",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript template action",
-  "main": "lib/main.js",
+  "description": "Action for checking a schema against a Hive GraphQL Schema Registry",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/openformation/hive-schema-check-action.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "",
+  "author": "Open Formation GmbH",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.0",

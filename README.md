@@ -1,4 +1,4 @@
-# GraphQL Hive schema check
+# GraphQL Hive Schema Check Action
 
 Use this action to check changes in your schema against GraphQL Hive using the Hive CLI. This can detect breaking changes before they are merged. Additionally, this action will comment the check result on the PR introducing the change.
 
@@ -10,6 +10,7 @@ jobs:
   check_schema:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pull-requests: write
     name: Run GraphQL Hive schema check
     steps:
